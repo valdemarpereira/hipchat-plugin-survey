@@ -1,22 +1,22 @@
 package com.valdemar.model;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public enum LozengeType {
 
-    @SerializedName("default")
+    @JsonProperty("default")
     DEFAULT,
-    @SerializedName("success")
+    @JsonProperty("success")
     SUCCESS,
-    @SerializedName("error")
+    @JsonProperty("error")
     ERROR,
-    @SerializedName("current")
+    @JsonProperty("current")
     CURRENT,
-    @SerializedName("new")
+    @JsonProperty("new")
     NEW,
-    @SerializedName("complete")
+    @JsonProperty("complete")
     COMPLETE,
-    @SerializedName("moved")
+    @JsonProperty("moved")
     MOVED;
 
 }
