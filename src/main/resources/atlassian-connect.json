@@ -17,8 +17,8 @@
         "view_room"
       ],
       "avatar": {
-        "url": "{{localBaseUrl}}/img/ducky.png",
-        "url@2x": "{{localBaseUrl}}/img/ducky.png"
+        "url": "{{localBaseUrl}}/img/poll_icon.png",
+        "url@2x": "{{localBaseUrl}}/img/poll_icon.png"
       }
     },
     "installable": {
@@ -43,8 +43,8 @@
         "key": "sample.glance",
         "target": "sample.sidebar",
         "icon": {
-          "url": "{{localBaseUrl}}/img/ducky.png",
-          "url@2x": "{{localBaseUrl}}/img/ducky.png"
+          "url": "{{localBaseUrl}}/img/poll_icon.png",
+          "url@2x": "{{localBaseUrl}}/img/poll_icon.png"
         }
       }
     ],
