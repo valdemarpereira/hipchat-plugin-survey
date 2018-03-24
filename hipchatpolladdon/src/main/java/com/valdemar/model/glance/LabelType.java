@@ -1,12 +1,9 @@
 package com.valdemar.model.glance;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public enum LabelType {
 
-    @SerializedName("html")
+    @JsonProperty("html")
     HTML
 }

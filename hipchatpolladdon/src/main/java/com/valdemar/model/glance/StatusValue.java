@@ -1,20 +1,13 @@
 package com.valdemar.model.glance;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.valdemar.model.LozengeType;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public final class StatusValue {
 
-    @XmlElement
     private String label;
-    @XmlElement
     private LozengeType type;
-    @XmlElement
     private String url;
-    @XmlElement(name = "url@2x")
     private String url2x;
 
     private StatusValue() {
@@ -39,5 +32,22 @@ public final class StatusValue {
 
     public static StatusValue ofIcon(String url, String url2x){
         return new StatusValue(null, null, url, url2x);
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public LozengeType getType() {
+        return type;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    @JsonProperty("url@2x")
+    public String getUrl2x() {
+        return url2x;
     }
 }

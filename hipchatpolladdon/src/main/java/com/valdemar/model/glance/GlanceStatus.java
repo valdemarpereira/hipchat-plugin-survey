@@ -2,9 +2,6 @@ package com.valdemar.model.glance;
 
 import com.valdemar.model.LozengeType;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public final class GlanceStatus {
 
     private StatusType type;
@@ -25,5 +22,13 @@ public final class GlanceStatus {
 
     public static GlanceStatus ofLozenge(LozengeType type, String label){
         return new GlanceStatus(StatusType.LOZENGE, StatusValue.ofLozenge(type, label));
+    }
+
+    public StatusType getType() {
+        return type;
+    }
+
+    public StatusValue getValue() {
+        return value;
     }
 }

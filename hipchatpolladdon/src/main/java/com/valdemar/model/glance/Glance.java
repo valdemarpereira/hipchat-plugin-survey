@@ -31,4 +31,11 @@ public final class Glance {
         return new Glance(Label.ofHtml(label), GlanceStatus.ofLozenge(type, lozengeLabel));
     }
 
+    public Label getLabel() {
+        return label;
+    }
+
+    public GlanceStatus getStatus() {
+        return status;
+    }
 }

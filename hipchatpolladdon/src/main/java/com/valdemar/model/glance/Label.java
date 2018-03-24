@@ -1,8 +1,5 @@
 package com.valdemar.model.glance;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public final class Label {
 
     private LabelType type;
