@@ -1,0 +1,279 @@
+/* add-on styles */
+.intro-header h1 {
+    font-size: 48px;
+    line-height: 60px;
+    padding-top: 20px;
+}
+.intro-header p.subtitle {
+    font-size: 24px;
+    line-height: 30px;
+    padding-bottom: 20px;
+}
+
+.nps-group {
+    margin: 0;
+    height: 100%;
+    display: block;
+}
+
+.main-panel .aui-page-panel-item {
+    padding: 20px 40px 20px 0;
+    height: 100px;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+.ac-content {
+    background-color: #ffffff;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 0 !important;
+}
+
+li {
+    /*width: 300px;*/
+    border-top: solid 1px #cccccc;
+}
+
+.nps-border {
+    color: #cccccc;
+    padding: 0;
+    margin: 0;
+}
+
+.nps-overhead {
+    display: block;
+}
+
+.nps-overhead-thing {
+    padding: 12px;
+    /*display: table-cell;*/
+    height: 80%;
+    margin: auto;
+}
+
+.nps-sidebar-error-msg {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.nps-goal-text, .nps-current-text, .nps-trend-icon {
+    margin-left: 10px;
+}
+
+.nps-goal-value, .nps-current-value {
+    font-weight: bold;
+    font-style: normal;
+}
+
+.nps-config-step {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nps-config-step-header {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.nps-config-step-explanation {
+    font-size: 12px;
+    color: #999999;
+}
+
+.nps-config-step-number {
+    float: left;
+    padding-right: 10px;
+}
+
+.nps-config-survey-monkey-logo {
+    padding-top: 10px;
+    padding-left: 80px;
+}
+
+.nps-config-authenticate-button {
+    padding-left: 87px;
+    padding-bottom: 20px;
+}
+
+.nps-config-greyed-out {
+    color: #999999;
+}
+
+.nps-config-error-text {
+    color: #d04437;
+    padding-top: 5px;
+}
+
+.nps-config-success-text {
+    color: #14892c;
+    padding-top: 5px;
+
+}
+
+.nps-config-page {
+    padding-left: 80px;
+}
+
+.nps-config-form {
+    padding-left: 40px;
+    padding-bottom: 20px;
+}
+
+.nps-feedback {
+    display: block;
+    position: relative;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nps-feedback.good {
+    border-left: 3px solid #14892c;
+}
+
+.nps-feedback.normal {
+    border-left: 3px solid #f6c342;
+}
+
+.nps-feedback.bad {
+    border-left: 3px solid #d04437;
+}
+
+.nps-icon {
+    padding: 16px;
+    padding-left: 20px;
+    display: table-cell;
+    position: relative;
+    height: 16px;
+    width: 16px;
+}
+
+.nps-filter-dropdown {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    background-color: #F5F5F5;
+
+}
+
+.nps-ellipsis {
+    display: none;
+    position: absolute;
+    top: 10%;
+    right: 10%;
+}
+
+.nps-ellipsis-always-visible {
+    display: table-cell;
+    position: absolute;
+    top: 90%;
+    right: 90%;
+
+}
+
+.nps-feedback:hover .nps-ellipsis {
+    display: table-cell;
+
+}
+
+.nps-comment {
+    /* This is to produce multiline ellipsis. Only supported in Chrome/webkit (so others don't get ellipsis)*/
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-width: 100%;
+    max-height: 36px;/*@desc-font-size*@desc-line-height*@desc-lines-to-show;*/ /* Fallback for non-webkit */
+    font-size: 14px;
+    line-height: 1.28571428571;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: italic;
+    cursor: pointer;
+
+    /*  @desc-font-size: 14px;
+        @desc-line-height: 18/14;
+        @desc-lines-to-show: 5; */
+}
+
+.nps-date {
+    font-size: 12px;
+    color : #999999;
+    cursor: pointer;
+}
+
+.ellipses {
+    display: none;
+}
+
+.element:hover .ellipses {
+    display: block;
+}
+.nps-focus {
+    height: 100%;
+    display: none;
+}
+
+.expanded_header {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.dropdown-li {
+    width: auto !important;
+    border: none;
+}
+
+.dropdown-menu {
+    min-width: initial !important;
+}
+
+.back_arrow{
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.comment_icon, .product_name {
+    margin-left: 5px;
+}
+
+.comment_icon {
+    height: 16px;
+    width: 16px;
+}
+
+.product_name {
+    font-weight: bold;
+}
+
+.time_posted {
+    padding-left: 30px;
+    color: #999999;
+}
+
+.nps_comment_expanded, .expanded_customer_detail_section {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.customer_detail_label {
+    color: #999999;
+}
+
+.dropdown {
+    float: right !important;
+}
+
+.aui-item {
+    width: 900px !important;
+}

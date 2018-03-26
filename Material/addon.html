@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="ap-local-base-url" content="https://young-atoll-2755.herokuapp.com/">
+  <meta name="acpt" content="{{signed_request}}">
+  <title>qwerty</title>
+  <link rel="stylesheet" href="{{hostStylesheetUrl}}"></head>
+  <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.8.0/css/aui.css" media="all">
+  <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-adg/5.8.0/css/aui-experimental.css" media="all">
+  <link rel="stylesheet" href="//aui-cdn.atlassian.com/aui-hipchat/0.0.3/css/aui-hipchat.min.css">
+  <!--[if lt IE 9]><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/aui/5.4.3/aui/css/aui-ie.css" media="all"><![endif]-->
+  <!--[if IE 9]><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/aui/5.4.3/aui/css/aui-ie9.css" media="all"><![endif]-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script type="text/javascript" src="//aui-cdn.atlassian.com/aui-hipchat/0.0.3/js/aui-hipchat.min.js"></script>
+  <script src="//aui-cdn.atlassian.com/aui-adg/5.9.0/js/aui.js"></script>
+  <script src="//aui-cdn.atlassian.com/aui-adg/5.9.0/js/aui-experimental.js"></script>
+
+  <link rel="stylesheet" href="https://young-atoll-2755.herokuapp.com/css/addon.css" type="text/css" />
+<body class="aui-page-hybrid addon">
+  <section id="content" role="main" class="ac-content">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<div class="aui-group nps-group">
+    <div class="aui-item">
+        <ul class="nps-overhead">
+            <li class="nps-overhead-thing">
+                <span class="nps-goal-text">Goal: </span>
+                <span class="nps-goal-value"></span>
+                <span class="nps-current-text">Current: </span>
+                <span class="nps-current-value"></span>
+            </li>
+            <li>
+                <form class="aui" class="nps-overhead-second">
+                    <div class="nps-filter-dropdown">
+                        <select id="select-nps-filter">
+                            <option value="all">All feedback</option>
+                            <option value="promoters">Promoters</option>
+                            <option value="passives">Passives</option>
+                            <option value="detractors">Detractors</option>
+                        </select>
+                    </div>
+                </form>
+            </li>
+        </ul>
+        <div class="nps-comments-container">
+          <ul>
+            <li class="nps-feedback good">
+              <div class="nps-comment">
+                bla
+              </div>
+              <div class="nps-date">
+                bla
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+        <hr class="nps-border">
+    </div>
+</div>
+
+<div class="aui-group nps-focus">
+    <div class="aui-item">
+        <div class="dropdown">
+            <button class="dropdown-toggle" type="button" data-toggle="dropdown" style="border:none; background-color: white;">
+                <img src="https://young-atoll-2755.herokuapp.com/img/unclicked_ellipsis_no_border.svg"/>
+            </button>
+            <ul class="dropdown-menu-right dropdown-menu">
+                <li class="dropdown-li"><a href="#">Discuss</a></li>
+            </ul>
+        </div>
+
+        <div class="expanded_header">
+            <img class="back_arrow" src="https://young-atoll-2755.herokuapp.com/img/unclicked_ellipsis_no_border.svg/img/back_arrow.svg"/>
+            <img class="comment_icon" src="https://young-atoll-2755.herokuapp.com/img/unclicked_ellipsis_no_border.svg/img/glance_icon_big.svg"/>
+            <span class="product_name">some product</span>
+        </div>
+        <div class="time_posted">Time posted</div>
+        <div class="nps_comment_expanded"></div>
+        <div class="expanded_customer_detail_section">
+            <span class="customer_detail_label">Score: </span>
+            <span id="score_badge" class="aui-lozenge"> Some score </span>
+        </div>
+        <div class="expanded_customer_detail_section">
+            <span class="customer_detail_label">Gender: </span>
+            <span id="customer_gender_value"></span>
+        </div>
+        <div class="expanded_customer_detail_section">
+            <span class="customer_detail_label">Age: </span>
+            <span id="customer_age_value"></span>
+        </div>
+        <div class="expanded_customer_detail_section">
+            <span class="customer_detail_label">Income: </span>
+            <span id="customer_income_value"></span>
+        </div>
+        <div class="expanded_customer_detail_section">
+            <span class="customer_detail_label">Country: </span>
+            <span id="customer_country_value"></span>
+        </div>
+    </div>
+</div>
+
+    </section>
+  <script>
+    var ACPT = '{{signed_request}}';
+  </script>
+  {{! <script src="//cdnjs.cloudflare.com/ajax/libs/aui/5.4.3/aui/js/aui.js"></script> }}
+  {{! <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/aui/5.4.3/aui/js/aui-ie.js"></script><![endif]--> }}
+  <script src="{{hostScriptUrl}}"></script>
+  <script src="https://young-atoll-2755.herokuapp.com/js/js/iframe.min.js"></script>
+</body>
+</html>
