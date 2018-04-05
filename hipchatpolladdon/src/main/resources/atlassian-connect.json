@@ -22,7 +22,10 @@
       }
     },
     "installable": {
-      "callbackUrl": "{{localBaseUrl}}/installable"
+      "allowGlobal": false,
+      "allowRoom": true,
+      "callbackUrl": "{{localBaseUrl}}/installable",
+      "uninstalledUrl": "${localBaseUrl}/uninstalled"
     },
     "configurable": {
       "url": "{{localBaseUrl}}/configure"
