@@ -7,6 +7,7 @@ import com.valdemar.model.ClientCredentialsData;
 import com.valdemar.model.Installable;
 import com.valdemar.service.CapabilitiesService;
 import com.valdemar.service.TokenStore;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class AddonController {
+public class AddonController implements InitializingBean {
 
     @Value("${application.baseUrl}")
     private String baseUrl;
@@ -30,7 +31,10 @@ public class AddonController {
     @Autowired
     private TokenStore tokenStore;
 
-    //ngrok
+    @Autowired
+    private Retrofit retrofit;
+
+    private CapabilitiesService service;
 
     @GetMapping(path= "/", produces = "application/json")
     public ResponseEntity<String> addonConnect() throws FileNotFoundException {
@@ -54,13 +58,6 @@ public class AddonController {
 
         String capabilitiesUrl = installation.getCapabilitiesUrl();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
-
-        CapabilitiesService service = retrofit.create(CapabilitiesService.class);
-
         String json = service.capabilities(capabilitiesUrl).execute().body();
 
         String tokenUrl = JsonPath.read(json, "$.capabilities.oauth2Provider.tokenUrl");
@@ -82,4 +79,9 @@ public class AddonController {
         return;
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        service = retrofit.create(CapabilitiesService.class);
+
+    }
 }
