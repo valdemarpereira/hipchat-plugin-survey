@@ -1,9 +1,9 @@
 {
   "key": "my-add-on",
-  "name": "Hello!",
-  "description": "My very first HipChat add-on",
+  "name": "Yet Another Survey",
+  "description": "A simple survey tool that allows the creation of surveys.",
   "vendor": {
-    "name": "Angry Nerds",
+    "name": "Valdemar Pereira",
     "url": "https://www.hipchat.com"
   },
   "links": {
@@ -40,7 +40,7 @@
     "glance": [
       {
         "name": {
-          "value": "Hello!"
+          "value": "Pool Service"
         },
         "queryUrl": "{{localBaseUrl}}/glance",
         "key": "sample.glance",
