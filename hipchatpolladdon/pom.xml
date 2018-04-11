@@ -48,6 +48,11 @@
             <version>${retrofit2.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-gson</artifactId>
+            <version>${retrofit2.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <version>${jayway.version}</version>
@@ -58,35 +63,21 @@
             <version>${java-jwt.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.google.auto.value</groupId>
-            <artifactId>auto-value-annotations</artifactId>
-            <version>${google-auto.value.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.auto.value</groupId>
-            <artifactId>auto-value</artifactId>
-            <version>${google-auto.value.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
             <version>${mongodb.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
-            <version>2.0.3.RELEASE</version>
+            <version>${spring.data.version}</version>
         </dependency>
-
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
-            <version>2.9.0</version>
+            <version>${redis.jedis.version}</version>
             <type>jar</type>
         </dependency>
-
     </dependencies>
 
     <properties>
@@ -96,8 +87,8 @@
         <jayway.version>2.3.0</jayway.version>
         <java-jwt.version>3.3.0</java-jwt.version>
         <mongodb.version>3.4.1</mongodb.version>
-        <google-auto.value.version>1.6</google-auto.value.version>
-
+        <redis.jedis.version>2.9.0</redis.jedis.version>
+        <spring.data.version>2.0.3.RELEASE</spring.data.version>
     </properties>
 
     <build>
