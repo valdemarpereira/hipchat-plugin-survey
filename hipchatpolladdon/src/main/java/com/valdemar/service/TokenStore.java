@@ -1,21 +1,16 @@
 package com.valdemar.service;
 
-import com.valdemar.dao.ClientCredetialsRepository;
+import com.valdemar.dao.ClientCredentialsRepository;
 import com.valdemar.model.ClientCredentialsData;
-import com.valdemar.model.Installable;
 import com.valdemar.model.Token;
 import okhttp3.Credentials;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class TokenStore implements InitializingBean {
 
     @Autowired
-    ClientCredetialsRepository repository;
+    ClientCredentialsRepository repository;
 
     @Autowired
     private Retrofit retrofit;
