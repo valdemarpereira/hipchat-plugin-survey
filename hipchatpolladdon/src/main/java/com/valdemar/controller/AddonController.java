@@ -12,10 +12,13 @@ import com.samskivert.mustache.Template;
 import com.valdemar.model.ClientCredentialsData;
 import com.valdemar.model.Installable;
 import com.valdemar.model.LozengeType;
+import com.valdemar.model.Survey.Survey;
+import com.valdemar.model.Survey.SurveyQuestion;
 import com.valdemar.model.glance.Glance;
 import com.valdemar.service.CapabilitiesService;
 import com.valdemar.service.PollService;
 import com.valdemar.service.TokenStore;
+import j2html.tags.DomContent;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +26,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,8 +33,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.OptionalInt;
+
+import static j2html.TagCreator.*;
+import static java.lang.Math.round;
 
 @RestController
 public class AddonController implements InitializingBean {
@@ -107,11 +114,94 @@ public class AddonController implements InitializingBean {
 
 
         String jwt_token = requestParams.get("signed_request");
+        DecodedJWT jwt = extractAndVerifyJWTSignature(jwt_token);
+
+        String oauthId = jwt.getIssuer();
+
+        Optional<ClientCredentialsData> ClientCredentialsOpt = tokenStore.getClientCredentials(oauthId);
+
+        tokenStore.accessToken(ClientCredentialsOpt.get().getOauthId());
+
+        return glance;
+    }
+
+    @GetMapping(path= "/sidebar")
+    public String sidebar(@RequestHeader HttpHeaders headers, @RequestParam Map<String, String> requestParams) throws IOException {
+
+
+        String jwt_token = requestParams.get("signed_request");
+        DecodedJWT jwt = extractAndVerifyJWTSignature(jwt_token);
+
+        List<Survey> surveyList = pollService.getAllOpenSurveys();
+
+        KindredColoursIterator colours = new KindredColoursIterator();
+
+        String htmlQuestions = section(attrs(".aui-connect-page"),
+                section(attrs(".aui-connect-content with-list"),
+                            ol(attrs(".aui-connect-list"),
+                                    each(surveyList, survey ->
+                                        li(attrs(".aui-connect-list-item " + colours.next()),
+                                            generateMenu(),
+                                            span(attrs(".aui-avatar aui-avatar-xsmall"),
+                                                    span(attrs(".aui-avatar-inner"),
+                                                            setSurveyIcon(jwt.getIssuer(), survey.getUserId())
+                                                    )
+                                             ),
+                                                span(attrs(".aui-connect-list-item-title bold"), survey.getTitle()),
+                                                ul(attrs(".aui-connect-list-item-attributes"),
+                                                        li(survey.getAuthor()),
+                                                        li(survey.getEndDate().toString())
+                                                    ),
+                                                dl(
+                                                        each( survey.getQuestions(), question ->
+                                                                dd(
+                                                                        attrs(".percentage percentage-" + calculatePercentage(survey, question)),
+                                                                        span(attrs(".text"),question.getQuestion())
+                                                                )
+                                                        )
+                                                )
+                                    )
+                            )
+                        )
+                )
+        ).render();
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        File sidebarView = new File(classLoader.getResource("views/sidebar.hbs").getFile());
+        File layout = new File(classLoader.getResource("views/layout.hbs").getFile());
+
+        FileReader sidebarViewReader = new FileReader(sidebarView);
+        FileReader layoutReader = new FileReader(layout);
+
+        Template tmpl = Mustache.compiler().escapeHTML(false).compile(sidebarViewReader);
+        Map<String, String> data = new HashMap<String, String>();
+        data.put("localBaseUrl", baseUrl);
+        data.put("questionsHtml", htmlQuestions);
+
+        String body = tmpl.execute(data);
+
+        tmpl = Mustache.compiler().escapeHTML(false).compile(layoutReader);
+        data.put("title", "Does It Works??");
+        data.put("localBaseUrl", baseUrl);
+
+        data.put("body", body);
+        String page = tmpl.execute(data);
+
+        return page;
+    }
+
+    private DomContent setSurveyIcon(String issuer, String userId) {
+        return img().withStyle("background-color: " + (issuer.equals(userId) ? "#FFD700;" : "#ccc;"));
+    }
+
+    private DecodedJWT extractAndVerifyJWTSignature(String jwt_token) throws UnsupportedEncodingException {
         DecodedJWT jwt = null;
         try {
             jwt = JWT.decode(jwt_token);
         } catch (JWTDecodeException exception) {
             //Invalid token
+            //TODO:  log
+            throw  exception;
         }
 
         String oauthId = jwt.getIssuer();
@@ -126,21 +216,46 @@ public class AddonController implements InitializingBean {
                     .build(); //Reusable verifier instance
             jwt = verifier.verify(jwt_token);
         } catch (UnsupportedEncodingException exception){
-            exception.printStackTrace();
-            //UTF-8 encoding not supported
+            throw exception;
+            //TODO: Log
         } catch (JWTVerificationException exception){
-            exception.printStackTrace();
             //Invalid signature/claims
+            throw exception;
+            //TODO: Log
+
         }
 
-        tokenStore.accessToken(ClientCredentialsOpt.get().getOauthId());
-
-        return glance;
+        return jwt;
     }
 
-        @Override
+    private DomContent generateMenu() {
+        return div(attrs(".aui-connect-list-item-actions"),
+                    button(attrs(".aui-dropdown2-trigger aui-button aui-dropdown2-trigger-arrowless"),
+                        span(attrs(".aui-icon aui-icon-small aui-iconfont-more"))
+                    ).withId("list-item-1-action-menu").attr("aria-owns","list-item-1").attr("aria-haspopup", "true").attr("data-no-focus", "true"),
+                div(attrs(".aui-style-default aui-dropdown2 aui-connect-list-item-action"),
+                        ul(attrs(".aui-list-truncate"),
+                                li("Edit").withHref("#"),
+                                li("Disable").withHref("#"))
+                        ).withId("list-item-1")
+        );
+    }
+
+    private int calculatePercentage(Survey survey, SurveyQuestion question) {
+
+        OptionalInt totalVotes = survey.getQuestions().stream().mapToInt(q -> q.getAnswers().size()).reduce((x, y) -> x+y);
+
+        int total = totalVotes.getAsInt();
+
+        return  round((100*question.getAnswers().size())/total);
+
+    }
+
+    @Override
     public void afterPropertiesSet() throws Exception {
         service = retrofit.create(CapabilitiesService.class);
 
     }
+
+
 }
